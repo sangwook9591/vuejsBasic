@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Axios</title>
+</head>
+<body>
+  <div id="app">
+    <button v-on:click="getData">get user</button>
+    <div>
+      {{ users }}
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        users: []
+      },
+      methods: {
+        getData: function() { 
+          var vm = this;
+          axios.get('https://jsonplaceholder.typicode.com/users/')
+            .then(function(response) {
+              console.log(response.data);
+              vm.users = response.data;
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        }
+      }
+    })
+
+           /*
+           axios (엑시오스) view에서 제공하는 http 통신 라이브러리
+           promise 기반의 http 통신라이브러리이며 상대적으로 다른
+           http 통신라이브러리에 비해 문서화가 잘되어 있고 API가 다양하다.
+
+
+           ajax -  비동기적인 웹 에플리케이션 제작
+
+           google ->vue resoource github  검섹
+           pagekit이라는 team에  vue reousrce라이브러가 공식이였다가
+           vue js의 에반유가 공식으로 사용하지 않고
+           axios 를 사용한다.
+           실제 구현시 셈플들이 vue-resource를 사용하면 안된다.  
+           
+
+           자바스크립트의 비동기 처리 패턴 진화
+           1. callback
+           2. promiise
+           3. porimise _genrator
+           4. async & await
+           
+            Axios 깃헙 주소 https://github.com/axios/axios
+
+            자바스크립트 비동기 처리와 콜백 함수 https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/
+
+            자바스크립트 Promise 이해하기 https://joshua1988.github.io/web-development/javascript/promise-for-beginners/
+
+            자바스크립트 async와 await https://joshua1988.github.io/web-development/javascript/js-async-await/
+
+           */
+  </script>
+</body>
+</html>
